@@ -1,6 +1,7 @@
 from models import Paciente, Medico, CitaMedica
 from repository import CentroSaludRepository
 
+
 def mostrar_menu():
     print("\n" + "="*40)
     print("   CENTRO DE SALUD - CHORRILLOS")
@@ -13,6 +14,7 @@ def mostrar_menu():
     print("6. Listar Citas Programadas")
     print("7. Salir")
     print("="*40)
+
 
 def main():
     repo = CentroSaludRepository()
@@ -33,10 +35,12 @@ def main():
             except ValueError:
                 print("[!] Error: La edad debe ser un número entero.")
                 continue
-            historia = input("Ingrese Número de Historia Clínica (ej. HC-002): ").strip()
+            historia = input(
+                "Ingrese Número de Historia Clínica (ej. HC-002): ").strip()
             antecedentes = input("Ingrese Antecedentes médicos: ").strip()
 
-            nuevo_paciente = Paciente(dni, nombre, edad, historia, antecedentes)
+            nuevo_paciente = Paciente(
+                dni, nombre, edad, historia, antecedentes)
             repo.agregar_paciente(nuevo_paciente)
             print("[Éxito] Paciente registrado correctamente.")
 
@@ -105,10 +109,12 @@ def main():
                     c.mostrar_detalles()
 
         elif opcion == "7":
-            print("\nGracias por usar el sistema del Centro de Salud Chorrillos. ¡Hasta luego!")
+            print(
+                "\nGracias por usar el sistema del Centro de Salud Chorrillos. ¡Hasta luego!")
             break
         else:
             print("[!] Opción inválida. Por favor, elija un número del 1 al 6.")
+
 
 if __name__ == "__main__":
     main()

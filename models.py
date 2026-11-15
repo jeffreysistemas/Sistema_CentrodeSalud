@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 
-class persona(ABC):
-    def __init__(self, dni: str , nombre: str , edad: int):
+
+class Persona(ABC):
+    def __init__(self, dni: str, nombre: str, edad: int):
         self._dni = dni
         self._nombre = nombre
         self._edad = edad
@@ -30,7 +31,9 @@ class Paciente(Persona):
         self.antecedentes = antecedentes
 
     def mostrar_info(self) -> None:
-        print(f"[PACIENTE] H.C: {self.historia_clinica} | Nombre: {self.nombre} | Edad: {self.edad} | DNI: {self.dni}")
+        print(
+            f"[PACIENTE] H.C: {self.historia_clinica} | Nombre: {self.nombre} | Edad: {self.edad} | DNI: {self.dni}")
+
 
 class Medico(Persona):
     def __init__(self, dni: str, nombre: str, edad: int, cmp: str, especialidad: str):
@@ -47,10 +50,12 @@ class Medico(Persona):
         return self._especialidad
 
     def mostrar_info(self) -> None:
-        print(f"[MÉDICO] CMP: {self._cmp} | Dr(a). {self.nombre} | Especialidad: {self._especialidad}")
+        print(
+            f"[MÉDICO] CMP: {self._cmp} | Dr(a). {self.nombre} | Especialidad: {self._especialidad}")
 
     def consultar_disponibilidad(self) -> bool:
         return True
+
 
 class CitaMedica:
     def __init__(self, fecha: str, hora: str, paciente: Paciente, medico: Medico, estado: str = "PROGRAMADA"):
@@ -59,6 +64,7 @@ class CitaMedica:
         self._paciente = paciente
         self._medico = medico
         self._estado = estado
+
     @property
     def fecha(self) -> str:
         return self._fecha
@@ -76,4 +82,5 @@ class CitaMedica:
         self._estado = nuevo_estado
 
     def mostrar_detalles(self) -> None:
-        print(f"Cita -> Fecha: {self._fecha} [{self._hora}] | Paciente: {self._paciente.nombre} | Médico: Dr(a). {self._medico.nombre} | Estado: {self._estado}")
+        print(
+            f"Cita -> Fecha: {self._fecha} [{self._hora}] | Paciente: {self._paciente.nombre} | Médico: Dr(a). {self._medico.nombre} | Estado: {self._estado}")

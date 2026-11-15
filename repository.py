@@ -1,8 +1,11 @@
 from models import Paciente, Medico, CitaMedica
 
+
 class CentroSaludRepository:
     _instance = None
-
+    pacientes: list
+    medicos: list
+    citas: list
 
     def __new__(cls):
         if cls._instance is None:
@@ -12,15 +15,17 @@ class CentroSaludRepository:
             cls._instance.citas = []
             cls._instance._cargar_datos_iniciales()
         return cls._instance
-    
+
     def _cargar_datos_iniciales(self):
 
-        medico1 = Medico("45678912", "Carlos Pérez", 42, "CMP-12345", "Medicina General")
-        medico2 = Medico("12345678", "María Gómez", 38, "CMP-67890", "Pediatría")
+        medico1 = Medico("45678912", "Carlos Pérez", 42,
+                         "CMP-12345", "Medicina General")
+        medico2 = Medico("12345678", "María Gómez",
+                         38, "CMP-67890", "Pediatría")
         self.medicos.extend([medico1, medico2])
 
-
-        paciente1 = Paciente("87654321", "Juan Quispe", 25, "HC-001", "Ninguno")
+        paciente1 = Paciente("87654321", "Juan Quispe",
+                             25, "HC-001", "Ninguno")
         self.pacientes.append(paciente1)
 
     def agregar_paciente(self, paciente: Paciente) -> bool:
@@ -46,8 +51,3 @@ class CentroSaludRepository:
     def programar_cita(self, cita: CitaMedica) -> bool:
         self.citas.append(cita)
         return True
-
-
-
-
-
